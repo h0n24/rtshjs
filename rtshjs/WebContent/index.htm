@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>Real Time Syntax Highlighting JavaScript</title>
+<style>
+body {font-family:arial;background-color:#faf9f9;margin-left:20px;}
+a,a:visited{color:blue}
+</style>
+
+</head>
+
+<body>
+
+<h1>Real Time Syntax Highlighting JavaScript (RTSHJS)</h1>
+<h4>This is a syntax highlighting engine written in JavaScript that colors text in real time while it is being typed in the browser.</h4>
+<p>I looked all around and didn't find anything that suits my needs so I began to code this. I found some other implementations of real-time coloring systems like spell checkers and a lot of online text editors (not real time), but they are so much more complex than this. This one is simple and has few lines of JavaScript code.</p>
+<p>This is a part of a bigger project. I'm currently working on a online programming IDE (<a href="http://ecco.sourceforge.net/">ecco.sourceforge.net</a>) and this syntax highlighting engine will be its code editor.</p>
+<p>This example shows syntax highlighting for Java language. Other languages can be easily implemented, its a matter of some regular expressions. Colors used here are based on colors used by <a href="http://www.eclipse.org/">Eclipse IDE</a>.</p>
+
+<strong>Demo:</strong><br />
+<iframe width="90%" height="400" id="rtshed" name="rtshed" src="http://www.txt.org/rtshjs/rtsh.htm"></iframe>
+<p>
+<strong>Download:</strong><br />
+<ul>
+<li><a href="http://www.txt.org/rtshjs/rtsh.js">rtsh.js</a></li>
+<li><a href="http://www.txt.org/rtshjs/rtsh.htm">rtsh.htm</a></li>
+<li><a href="http://www.txt.org/rtshjs/rtsh.css">rtsh.css</a></li>
+<li><a href="http://www.txt.org/rtshjs/index.htm">index.htm</a></li>
+<li><a href="http://www.txt.org/rtshjs/linenumbers.gif">linenumbers.gif</a></li>
+</ul>
+</p>
+
+<p>
+This was tested only in <strong>Firefox 1.5</strong> and <strong>Internet Explorer 6</strong>.<br />
+All limitations and known bugs are listed here. If you find a new one, please comment or <a href="mailto:fermads@gmail.com">send me</a> an email.
+<ul>
+<li>undo/redo do not work well</li>
+<li>page up/page down get lost (IE only)</li>
+<li>line numbering goes from 1 to 1500</li>
+</ul>
+</p>
+
+<p>You can use and modify this as you want. Just keep my credits somewhere around. Thanks.</p>
+
+<a href="mailto:fermads@gmail.com">Fernando M.A.d.S.</a>
+
+</body>
+</html>
