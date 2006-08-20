@@ -15,7 +15,7 @@ select{background:#ffffe1;}
 <h4>This is a syntax highlighting engine written in JavaScript that colors text in real time while it is being typed in the browser.</h4>
 <p>I looked all around and didn't find anything that suits my needs so I began to code this. I found some other implementations of real-time coloring systems like spell checkers and a lot of online text editors (not real time), but they are so much more complex than this. This one is simple and has few lines of JavaScript code.</p>
 <p>This is a part of a bigger project. I'm currently working on a online programming IDE (<a href="http://ecco.sourceforge.net/">ecco.sourceforge.net</a>) and this syntax highlighting engine will be its code editor.</p>
-<p>This example shows syntax highlighting for Java and HTML. Other languages can be easily implemented, its a matter of some regular expressions. Colors used here are based on colors used by <a href="http://www.eclipse.org/">Eclipse IDE</a>.</p>
+<p>This example shows syntax highlighting for Java and HTML. Other languages can be easily implemented, its a matter of some regular expressions. Colors used for Java are based on colors used by <a href="http://www.eclipse.org/">Eclipse IDE</a>.</p>
 
 <strong>Demo:</strong> <em>choose language:</em> <select onchange=document.getElementById('rtshed').src=this.options[this.selectedIndex].value><option value="rtsh-java.htm">Java</option><option value="rtsh-html.htm">HTML</option></select><br />
 <iframe width="90%" height="400" id="rtshed" name="rtshed" src="rtsh-java.htm"></iframe>
