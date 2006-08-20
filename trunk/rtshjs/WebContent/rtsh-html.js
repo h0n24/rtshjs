@@ -1,10 +1,12 @@
 /*
-Real Time Syntax Highlighting JS - RTSHJS v0.61
+Real Time Syntax Highlighting JS - RTSHJS v0.63
 
 You can use and modify this as you want. 
 Just keep my credits somewhere around. Thanks.
 
 Fernando M.A.d.S. - fermads@gmail.com
+
+http://syntaxhighlighting.blogspot.com/2006/08/real-time-syntax-highlighting.html
 */
 
 RTSH = function() {
@@ -42,12 +44,13 @@ RTSH = function() {
 	    	var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
 		    if(charCode == 13 || charCode == 32) {
 			 	RTSH.syntaxHighlight();
-			  	RTSH.findString('');
+			  	RTSH.findString('­');
 			}
 		}    
 	}
 
 	this.findString = function(str) { // JavaScripter.net. Copyright © 1999-2000, Alexei Kourbatov
+//		alert(str)
 		if(browser == 2) { // FF
 			strFound = self.find(str);
 			if (!strFound) {
@@ -71,14 +74,14 @@ RTSH = function() {
 
 	this.syntaxHighlight = function() {
 		if(browser == 2) { // FF
-			document.execCommand("inserthtml", false, '&#127;');
+			document.execCommand("inserthtml", false, '&shy;');
 			x = document.getElementById('edt').innerHTML;
 			x = x.replace(/<[bis]>|<\/[bis]>/ig,'');
 			x = x.replace(/<\/?span.*?>/g,'');			
 			x = x.replace(/<\/?pre>/g,''); 
 		}
 		else if(browser == 1) { // IE
-			if(!arguments[0]) document.selection.createRange().text = "";
+			if(!arguments[0]) document.selection.createRange().text = "­";
 			x = document.getElementById('edt').innerHTML;
 			x = x.replace(/<\/?STRONG>|<\/?EM>|<\/?FONT.*?>/g,'');
 			x = '<P>'+x;
@@ -93,9 +96,7 @@ RTSH = function() {
 		x = x.replace(/(&lt;style;*?&gt;)(.*?)(&lt;\/style&gt;)/g,'<em>$1</em><em>$2</em><em>$3</em>'); // tags
 		x = x.replace(/(&lt;script;*?&gt;)(.*?)(&lt;\/script&gt;)/g,'<u>$1</u><u>$2</u><u>$3</u>'); // tags		
 		x = x.replace(/=(["'].*?["'])/g,'=<s>$1</s>'); // tags		
-//		x = x.replace(/(public|class|import|protected|private|static|final|new|extends|float|long|return|continue|null|false|true|throws|boolean|void|try|if|for|switch|catch|int|else)([ \"\'\{\(;<])/g,'<b>$1</b>$2'); // reserved words
 		x = x.replace(/(&lt;!--.*?--&gt.)/g,'<i>$1</i>'); // comments 
-//		x = x.replace(/\/\*(.*?)\*\//g,'<i>/*$1*/</i>'); // comments
 //		alert(x);
 		document.getElementById('edt').innerHTML = '<PRE>'+x+'</PRE>';
 	}
