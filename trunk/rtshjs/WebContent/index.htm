@@ -17,8 +17,8 @@ a,a:visited{color:blue}
 <p>This is a part of a bigger project. I'm currently working on a online programming IDE (<a href="http://ecco.sourceforge.net/">ecco.sourceforge.net</a>) and this syntax highlighting engine will be its code editor.</p>
 <p>This example shows syntax highlighting for Java language. Other languages can be easily implemented, its a matter of some regular expressions. Colors used here are based on colors used by <a href="http://www.eclipse.org/">Eclipse IDE</a>.</p>
 
-<strong>Demo:</strong><br />
-<iframe width="90%" height="400" id="rtshed" name="rtshed" src="http://www.txt.org/rtshjs/rtsh.htm"></iframe>
+<strong>Demo:</strong> choose language: <select onchange=document.getElementById('rtshed').src=this.options[this.selectedIndex].value><option value="rtsh-java.htm">Java</option><option value="rtsh-html.htm">HTML</option></select><br />
+<iframe width="90%" height="400" id="rtshed" name="rtshed" src="rtsh-html.htm"></iframe>
 <p>
 <strong>Download:</strong><br />
 <ul>
