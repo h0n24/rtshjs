@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+	<title>Real Time Syntax Highlighting Code Editor JavaScript</title>
+	<link type="text/css" rel="stylesheet" href="rtsh-php.css" />
+	<script type="text/javascript" src="rtsh.js"></script>
+	<script type="text/javascript">
+	RTSH.language = 'php';
+	</script>
+</head>
+
+
+<body contenteditable="true" id="edt"><PRE>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;RTSHJS test&lt;/title&gt;
+&lt;script&gt;alert(1);&lt;/script&gt;
+&lt;style&gt;
+	h1 {color:red;}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body bgcolor="black" margin="1"&gt;
+
+&lt;?php
+/* php comment here */
+$narray['IBM']="International Business Machines";
+$narray['MS']="Micro Sonics";
+$narray['CA']="Computer Associated";
+$narray['WHO']="World Health Organization";
+$narray['UK']="United Kingdon";
+$narray['BA']="Something Random";
+
+asort($narray); // more comment
+
+foreach($narray as $key =&gt; $value)     {
+    print $key . " = " . $value . "&lt;br /&gt;";
+}
+?>
+
+&lt;!-- 
+	html comment here
+--&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+</PRE>
+</body>
+</html>
