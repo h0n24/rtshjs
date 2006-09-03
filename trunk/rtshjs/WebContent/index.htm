@@ -3,10 +3,21 @@
 <head>
 	<title>Real Time Syntax Highlighting Code Editor JavaScript</title>
 <style>
-body{font-family:arial;background-color:#faf9f9;margin-left:20px;}
-a,a:visited{color:blue;}
+body{font-family:Georgia,Serif;background-color:#faf9f9;margin-left:20px;}
+a,a:visited{color:#3366cc;}
 select{background:#ffffe1;}
+button{margin-top:5px;}
+h1{display:none;}
 </style>
+
+<script>
+function saveAsPlainText() {
+	var IFrameObj = document.getElementById('rtshed').contentWindow;
+	var textWithoutHighlighting = IFrameObj.RTSH.plainText()
+	alert(textWithoutHighlighting);
+}
+</script>
+
 </head>
 
 <body>
@@ -15,31 +26,26 @@ select{background:#ffffe1;}
 <h4>This is a code editor with syntax highlighting written in JavaScript that colors text in real time while it's being typed in the browser.</h4>
 <!--p>I looked all around and didn't find anything that suits my needs so I began to code this. I found some other implementations of real-time coloring systems like spell checkers and a lot of online text editors (not real time), but they are so much more complex than this. This one is simple and has few lines of JavaScript code.</p-->
 <!--p>This is a part of a bigger project. I'm currently working on a online programming IDE (<a href="http://ecco.sourceforge.net/">ecco.sourceforge.net</a>) and this syntax highlighting engine will be its code editor.</p-->
-<p>Example shows syntax highlighting for Java and HTML. Other languages can be easily implemented, its a matter of some regular expressions. Colors used for Java are based on colors used by <a href="http://www.eclipse.org/">Eclipse IDE</a>.</p>
+<p>Example shows syntax highlighting for <strong>Java</strong>, <strong>PHP</strong> and <strong>HTML</strong>. Other languages can be easily implemented, its a matter of some regular expressions. Colors used for Java are based on colors used by <a href="http://www.eclipse.org/" target="_top">Eclipse IDE</a>.</p>
 
-<strong>Demo:</strong> <em>choose language:</em> <select onchange="document.getElementById('rtshed').src=this.options[this.selectedIndex].value"><option value="rtsh-java.htm">Java</option><option value="rtsh-html.htm">HTML</option></select><br />
-<iframe width="90%" height="400" id="rtshed" name="rtshed" src="rtsh-java.htm"></iframe>
+<strong>Demo:</strong> <em>choose language:</em> <select onchange="document.getElementById('rtshed').src=this.options[this.selectedIndex].value"><option value="rtsh-php.htm">PHP</option><option value="rtsh-java.htm">Java</option><option value="rtsh-html.htm">HTML</option></select><br />
+<iframe width="90%" height="400" id="rtshed" name="rtshed" src="rtsh-php.htm"></iframe><br />
+<button onclick="saveAsPlainText()"><strong>alert() code without highlighting</strong></button> :: Example of showing original code
 <p>
-<strong>Download:</strong><br />
+<strong>Download RTSHJS v.0.71:</strong><br />
 <ul>
-	<li><a href="http://www.txt.org/rtshjs/rtsh.js">rtsh.js</a> :: Main code</li>
-	<li><a href="http://www.txt.org/rtshjs/rtsh-java.htm">rtsh-java.htm</a> :: Java example</li>
-	<li><a href="http://www.txt.org/rtshjs/rtsh-java.css">rtsh-java.css</a> :: Java syntax colors</li>
-	<li><a href="http://www.txt.org/rtshjs/rtsh-html.htm">rtsh-html.htm</a> :: HTML example</li>
-	<li><a href="http://www.txt.org/rtshjs/rtsh-html.css">rtsh-html.css</a> :: HTML syntax colors</li>
-	<li><a href="http://www.txt.org/rtshjs/index.htm">index.htm</a> :: Open examples inside iframe</li>
-	<li><a href="http://www.txt.org/rtshjs/linenumbers.gif">linenumbers.gif</a> :: Background image</li>
+	<li><a href="http://www.txt.org/rtshjs/rtsh.js" target="_top">rtsh.js</a> :: See the main code</li>
+	<li><a href="http://www.txt.org/rtshjs/rtshjs-v.0.71.zip" target="_top">rtshjs-v.0.71.zip</a> :: Package with Java, PHP and HTML examples
 </ul>
 </p>
 
 <p>
 Tested in <strong>Firefox 1.5</strong> and <strong>Internet Explorer 6</strong>.<br />
-All limitations and known bugs are listed here. If you find a new one, please comment or <a href="mailto:fermads@gmail.com">send me</a> an email.
+All limitations and known bugs are listed here. If you find a new one, please <a href="https://beta.blogger.com/comment.g?blogID=4655848136530126957&postID=109359885527130993" target="_top">comment</a> or <a href="mailto:fermads@gmail.com">send me</a> an email.
 <ul>
-	<li>undo/redo do not work well</li>
+	<li>undo/redo do not work (yet)</li>
 	<li>page up/page down get lost (IE only)</li>
-	<li>line numbers seens to be reloading every time (IE only)</li>
-	<li>line numbering goes from 1 to 1500</li>
+	<li>line numbers bg seems to be reloading every parsing (IE only)</li>
 </ul>
 </p>
 
