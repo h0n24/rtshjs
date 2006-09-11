@@ -136,6 +136,8 @@ languages = {
 	/(&lt;script;*?&gt;)(.*?)(&lt;\/script&gt;)/g,'<u>$1</u><u>$2</u><u>$3</u>', // script tags
 	/=(["'].*?["'])/g,'=<s>$1</s>', // atributes
 	/(&lt;!--.*?--&gt.)/g,'<i>$1</i>' // comments 
+],
+	text : [
 ] }
 
 onload = function() {
