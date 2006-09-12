@@ -2,4 +2,4 @@
 -strings outside php and outside html attributes are colouring wrong
 -HTML tag completion
 -page up/page down get lost (IE only)
--line numbers bg seems to be reloading every parsing (IE only)
+-line numbers bg seems to be reloading every parsing (IE only) [FIXED]

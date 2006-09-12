@@ -1,5 +1,5 @@
 /*
-Real Time Syntax Highlighting JS - RTSHJS v0.72
+Real Time Syntax Highlighting JS - RTSHJS v0.73
 
 You can use and modify this code as you want. 
 Just keep my credits somewhere around. Thanks.
@@ -15,14 +15,17 @@ RTSH = {
 
 	initialize : function() {
 		this.detect();
+		chars = '|13|32|191|190|57|48|187|188'; // charscodes that fires syntax highlighting
+		str = '\xad'; // control char
 		if(browser.ff) { // FF
-			str = '\xad';
+			editor = document.getElementById('ffedt');
 			document.designMode = 'on';
 			document.addEventListener('keydown', this.keyHandler, true);
 			window.blur();
 		} 
 		else if(browser.ie) { // IE
-			str = '\xad';
+			editor = document.getElementById('ieedt');
+			editor.contentEditable = 'true';
 			document.onkeydown = this.keyHandler;
 		}
 		else {
@@ -31,7 +34,6 @@ RTSH = {
 		}
 		this.syntaxHighlight(1);
 		window.scroll(0,0);
-		
 	},
 
 	detect : function() {
@@ -44,7 +46,8 @@ RTSH = {
 		evt = (evt) ? evt : (window.event) ? event : null;
 	  	if(evt) {
 	    	charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
-		    if((charCode == 13 || charCode == 32) && (!evt.ctrlKey && !evt.altKey)) {
+			// Syntax highlighting occurs for every time one of charcodes inside var chars is pressed
+		    if((chars.indexOf('|'+charCode+'|')!=-1) && (!evt.ctrlKey && !evt.altKey)) {
 			 	RTSH.syntaxHighlight();
 			  	RTSH.findString();
 			}
@@ -69,27 +72,28 @@ RTSH = {
 	syntaxHighlight : function() {
 		if(browser.ff) { // FF
 			document.execCommand("inserthtml", false, str);
-			x = document.getElementById('edt').innerHTML;
+			x = editor.innerHTML;
 			x = x.replace(/<br>/g,'\n');
 			x = x.replace(/<.*?>|<\/.*?>/g,'');
 			x = x.replace(/\n/g,'<br>');			
 		}
 		else if(browser.ie) { // IE
 			if(!arguments[0]) document.selection.createRange().text = str;
-			x = document.getElementById('edt').innerHTML;
+			x = editor.innerHTML;
 			x = x.replace(/<P>/g,'\n');
 			x = x.replace(/<\/P>/g,'\r');
 			x = x.replace(/<\/?.*?>/g,'');
 			x = '<P>'+x;
 			x = x.replace(/\n/g,'<P>');
-			x = x.replace(/\r/g,'<\/P>');			
+			x = x.replace(/\r/g,'<\/P>');
+			x = x.replace(/(<P>)+/,'<P>');
 			x = x.replace(/<P><\/P>/g,'<P>&nbsp;<\/P>');			
 			}
 
 		for(i=0;i<languages[this.language].length;i++) 
 			x = x.replace(languages[this.language][i],languages[this.language][i+1]);
 		
-		document.getElementById('edt').innerHTML = '<PRE>'+x+'</PRE>';		
+		editor.innerHTML = '<pre>'+x+'</pre>';
 	},
 	
 	plainText : function() { // return syntax highlighted code to original code
@@ -102,7 +106,6 @@ RTSH = {
 		code = code.replace(/<.*?>/g,'');
 		code = code.replace(/&lt;/g,'<');
 		code = code.replace(/&gt;/g,'>');
-		if(browser.ie) code = code.replace(/\n+/,'');
 		return code;
 	}
 	
@@ -113,7 +116,7 @@ RTSH = {
 languages = { 
 	java : [
 	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
-	/(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)([ \.\"\'\{\(;­&<])/g,'<b>$1</b>$2', // reserved words
+	/(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)([ \.\"\'\{\(;\xad&<])/g,'<b>$1</b>$2', // reserved words
 	/\/\/(.*?)(<br>|<\/P>)/g,'<i>//$1</i>$2', // comments 
 	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>' // comments
 ],
@@ -125,7 +128,7 @@ languages = {
 	/(&lt;\?.*?\?&gt;)/g,'<strong>$1</strong>', // php tags	
 	/(&lt;\?php|\?&gt;)/g,'<cite>$1</cite>', // php tags		
 	/(\$.*?)([ \)\(\[\{\+\-\*\/&!\|%=;])/g,'<var>$1</var>$2',
-	/(and|or|xor|__FILE__|exception|__LINE__|array|as|break|case|class|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|for|foreach|function|global|if|include|include_once|isset|list|new|print|require|require_once|return|static|switch|unset|use|var|while|__FUNCTION__|__CLASS__|__METHOD__|final|php_user_filter|interface|implements|extends|public|private|protected|abstract|clone|try|catch|throw|this)([ \.\"\'\{\(;­&<])/g,'<ins>$1</ins>$2', // reserved words
+	/(and|or|xor|__FILE__|exception|__LINE__|array|as|break|case|class|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|for|foreach|function|global|if|include|include_once|isset|list|new|print|require|require_once|return|static|switch|unset|use|var|while|__FUNCTION__|__CLASS__|__METHOD__|final|php_user_filter|interface|implements|extends|public|private|protected|abstract|clone|try|catch|throw|this)([ \.\"\'\{\(;\xad&<])/g,'<ins>$1</ins>$2', // reserved words
 	/\/\/(.*?)(<br>|<P>)/g,'<i>//$1</i>$2', // comments 
 	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // comments
 	/(&lt;!--.*?--&gt.)/g,'<i>$1</i>' // comments 

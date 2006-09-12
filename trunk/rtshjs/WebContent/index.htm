@@ -2,22 +2,22 @@
 <html>
 <head>
 	<title>Real Time Syntax Highlighting Code Editor JavaScript</title>
-<style>
-body{font-family:Georgia,Serif;background-color:#faf9f9;margin-left:20px;}
-a,a:visited{color:#3366cc;}
-select{background:#ffffe1;}
-button{margin-top:5px;}
-h1{display:none;}
-</style>
 
-<script>
-function saveAsPlainText() {
-	var IFrameObj = document.getElementById('rtshed').contentWindow;
-	var textWithoutHighlighting = IFrameObj.RTSH.plainText()
-	alert(textWithoutHighlighting);
-}
-</script>
-
+	<style>
+	body{font-family:Georgia,Serif;background-color:#faf9f9;margin-left:20px;}
+	a,a:visited{color:#3366cc;}
+	select{background:#ffffe1;}
+	button{margin-top:5px;}
+	h1{display:none;}
+	</style>
+	
+	<script>
+	function saveAsPlainText() {
+		var IFrameObj = document.getElementById('rtshed').contentWindow;
+		var textWithoutHighlighting = IFrameObj.RTSH.plainText()
+		alert(textWithoutHighlighting);
+	}
+	</script>
 </head>
 
 <body>
@@ -28,14 +28,14 @@ function saveAsPlainText() {
 <!--p>This is a part of a bigger project. I'm currently working on a online programming IDE (<a href="http://ecco.sourceforge.net/">ecco.sourceforge.net</a>) and this syntax highlighting engine will be its code editor.</p-->
 <p>Example shows syntax highlighting for <strong>Java</strong>, <strong>PHP</strong> and <strong>HTML</strong>. Other languages can be easily implemented, its a matter of some regular expressions. Colors used for Java are based on colors used by <a href="http://www.eclipse.org/" target="_top">Eclipse IDE</a>.</p>
 
-<strong>Demo:</strong> <em>choose language:</em> <select onchange="document.getElementById('rtshed').src=this.options[this.selectedIndex].value"><option value="rtsh-php.htm">PHP</option><option value="rtsh-java.htm">Java</option><option value="rtsh-html.htm">HTML</option></select><br />
+<strong>Demo:</strong> <em>choose language:</em> <select onchange="document.getElementById('rtshed').src=this.options[this.selectedIndex].value"><option value="rtsh-php.htm">PHP</option><option value="rtsh-java.htm">Java</option><option value="rtsh-html.htm">HTML</option><option value="rtsh-text.htm">plain text</option></select><br />
 <iframe width="90%" height="400" id="rtshed" name="rtshed" src="rtsh-php.htm"></iframe><br />
 <button onclick="saveAsPlainText()"><strong>alert() code without highlighting</strong></button> :: Example of showing original code
 <p>
-<strong>Download RTSHJS v.0.71:</strong><br />
+<strong>Download RTSHJS v.0.73 (12 september 2006):</strong><br />
 <ul>
-	<li><a href="http://www.txt.org/rtshjs/rtsh.js" target="_top">rtsh.js</a> :: See the main code</li>
-	<li><a href="http://www.txt.org/rtshjs/rtshjs-v.0.71.zip" target="_top">rtshjs-v.0.71.zip</a> :: Package with Java, PHP and HTML examples
+	<li><a href="http://www.txt.org/rtshjs/rtsh.js" target="_top">rtsh.js</a> :: Take a look at the main code</li>
+	<li><a href="http://www.txt.org/rtshjs/rtshjs-v.0.73.zip" target="_top">rtshjs-v.0.73.zip</a> :: Package with Java, PHP and HTML examples
 </ul>
 </p>
 
@@ -45,7 +45,7 @@ All limitations and known bugs are listed here. If you find a new one, please <a
 <ul>
 	<li>undo/redo do not work (yet)</li>
 	<li>page up/page down get lost (IE only)</li>
-	<li>line numbers bg seems to be reloading every parsing (IE only)</li>
+	<li><s>line numbers bg seems to be reloading every parsing (IE only)</s></li> <strong>[fixed]</strong>
 </ul>
 </p>
 
