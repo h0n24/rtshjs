@@ -1,5 +1,7 @@
 -undo / redo
--strings outside php and outside html attributes are colouring wrong
--HTML tag completion
+-copy and past of last line generates <p></p>
+-linux font size does not match line numbers (need to do some tests with line-height css)
+-bug of " without corresponding end "
+-"strings" outside php and outside html attributes are colouring wrong
 -page up/page down get lost (IE only)
 -line numbers bg seems to be reloading every parsing (IE only) [FIXED]
