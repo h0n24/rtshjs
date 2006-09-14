@@ -1,5 +1,5 @@
 /*
-Real Time Syntax Highlighting JS - RTSHJS v0.74
+Real Time Syntax Highlighting JS - RTSHJS v0.76
 
 You can use and modify this code as you want. 
 Just keep my credits somewhere around. Thanks.
@@ -16,7 +16,7 @@ RTSH = {
 	// set initial vars and start sh
 	initialize : function() {
 		this.detect();
-		chars = '|13|32|191|190|57|48|187|188'; // charscodes that fires syntax highlighting
+		chars = '|13|32|191|57|48|187|188|'; // charscodes that fires syntax highlighting
 		cc = '\xad'; // control char
 		if(browser.ff) { // FF
 			editor = document.getElementById('ffedt');
@@ -51,7 +51,6 @@ RTSH = {
 		evt = (evt) ? evt : (window.event) ? event : null;
 	  	if(evt) {
 	    	charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : ((evt.which) ? evt.which : 0));
-
 			// Syntax highlighting occurs every time one of charcodes inside var 'chars' is pressed
 		    if((chars.indexOf('|'+charCode+'|')!=-1) && (!evt.ctrlKey && !evt.altKey)) {
 			 	RTSH.syntaxHighlight();
@@ -126,7 +125,7 @@ languages = {
 	java : [
 	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
 	/(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)([ \.\"\'\{\(;\xad&<])/g,'<b>$1</b>$2', // reserved words
-	/[^:]\/\/(.*?)(<br>|<\/P>)/g,'<i>//$1</i>$2', // comments 
+	/([^:])\/\/(.*?)(<br>|<\/P>)/g,'$1<i>//$2</i>$3', // comments
 	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>' // comments
 ],
 	php : [
@@ -138,9 +137,9 @@ languages = {
 	/(&lt;\?php|\?&gt;)/g,'<cite>$1</cite>', // php tags		
 	/(\$.*?)([ \)\(\[\{\+\-\*\/&!\|%=;])/g,'<var>$1</var>$2',
 	/(and|or|xor|__FILE__|exception|__LINE__|array|as|break|case|class|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|for|foreach|function|global|if|include|include_once|isset|list|new|print|require|require_once|return|static|switch|unset|use|var|while|__FUNCTION__|__CLASS__|__METHOD__|final|php_user_filter|interface|implements|extends|public|private|protected|abstract|clone|try|catch|throw|this)([ \.\"\'\{\(;\xad&<])/g,'<ins>$1</ins>$2', // reserved words
-	/[^:]\/\/(.*?)(<br>|<P>)/g,'<i>//$1</i>$2', // comments 
-	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // comments
-	/(&lt;!--.*?--&gt.)/g,'<i>$1</i>' // comments 
+	/([^:])\/\/(.*?)(<br>|<\/P>)/g,'$1<i>//$2</i>$3', // php comments
+	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // php comments
+	/(&lt;!--.*?--&gt.)/g,'<big>$1</big>' // html comments 
 ],
 	html : [
 	/(&lt;[^!]*?&gt;)/g,'<b>$1</b>', // all tags

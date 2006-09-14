@@ -17,6 +17,16 @@
 		var textWithoutHighlighting = IFrameObj.RTSH.plainText()
 		alert(textWithoutHighlighting);
 	}
+	last = null;
+	function changeLang(lang,obj) {
+		if(last == null) last = document.getElementById('phpbt');
+		last.style.fontWeight = 'normal';
+		last.style.color = 'black';
+		obj.style.fontWeight = 'bold';
+		obj.style.color = 'red';
+		last = obj;
+		rtshed.location.href=lang;
+	}
 	</script>
 </head>
 
@@ -28,14 +38,14 @@
 <!--p>This is a part of a bigger project. I'm currently working on a online programming IDE (<a href="http://ecco.sourceforge.net/">ecco.sourceforge.net</a>) and this syntax highlighting engine will be its code editor.</p-->
 <p>Example shows syntax highlighting for <strong>Java</strong>, <strong>PHP</strong> and <strong>HTML</strong>. Other languages can be easily implemented, its a matter of some regular expressions. Colors used for Java are based on colors used by <a href="http://www.eclipse.org/" target="_top">Eclipse IDE</a>.</p>
 
-<strong>Demo:</strong> <em>choose language:</em> <select onchange="document.getElementById('rtshed').src=this.options[this.selectedIndex].value"><option value="rtsh-php.htm">PHP</option><option value="rtsh-java.htm">Java</option><option value="rtsh-html.htm">HTML</option><option value="rtsh-text.htm">plain text</option></select><br />
+<strong>Demo:</strong> <em>choose language:</em> <button id="phpbt" onclick="changeLang('rtsh-php.htm',this)" style="font-weight:bold;color:red">PHP</button> <button onclick="changeLang('rtsh-java.htm',this)">Java</button> <button onclick="changeLang('rtsh-html.htm',this)">HTML</button> <button onclick="changeLang('rtsh-text.htm',this)">plain text</button><br />
 <iframe width="90%" height="400" id="rtshed" name="rtshed" src="rtsh-php.htm"></iframe><br />
 <button onclick="saveAsPlainText()"><strong>alert() code without highlighting</strong></button> :: Example of showing original code
 <p>
-<strong>Download RTSHJS v.0.74 (12 september 2006):</strong><br />
+<strong>Download RTSHJS v.0.76 (14 september 2006):</strong><br />
 <ul>
 	<li><a href="http://www.txt.org/rtshjs/rtsh.js" target="_top">rtsh.js</a> :: Take a look at the main code</li>
-	<li><a href="http://www.txt.org/rtshjs/rtshjs-v.0.74.zip" target="_top">rtshjs-v.0.74.zip</a> :: Package with Java, PHP and HTML examples
+	<li><a href="http://www.txt.org/rtshjs/rtshjs-v.0.76.zip" target="_top">rtshjs-v.0.76.zip</a> :: Package with Java, PHP and HTML examples
 </ul>
 </p>
 
