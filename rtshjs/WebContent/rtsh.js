@@ -22,7 +22,7 @@ RTSH = {
 			editor = document.getElementById('ffedt');
 			document.designMode = 'on';
 			document.addEventListener('keydown', this.keyHandler, true);
-			window.blur();
+			document.body.focus();
 		}
 		else if(browser.ie) { // IE
 			editor = document.getElementById('ieedt');
