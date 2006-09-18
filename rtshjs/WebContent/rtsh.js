@@ -12,6 +12,23 @@ http://syntaxhighlighting.blogspot.com/2006/08/real-time-syntax-highlighting.htm
 RTSH = {
 	range : null,
 	language : null,
+	history : [],
+	turn : 0,
+	
+	// undo and redo -- not working 100% yet
+	historyGo : function(direction) {
+		if(direction==1) this.turn++;
+		else this.turn--;
+//		alert(this.history[this.turn].indexOf(cc));
+		if(typeof(this.history[this.turn])=='undefined') { 
+			return;
+		}
+	
+		editor.innerHTML = RTSH.history[this.turn];
+		this.findString();
+//		if(browser.ff) window.getSelection().getRangeAt(0).deleteContents();
+	
+	},
 
 	// set initial vars and start sh
 	initialize : function() {
@@ -36,7 +53,8 @@ RTSH = {
 			return;
 		}
 		this.syntaxHighlight(1);
-		window.scroll(0,0);
+
+//		window.scroll(0,0);
 	},
 
 	// detect browser, for now IE and FF only
@@ -56,9 +74,13 @@ RTSH = {
 			 	RTSH.syntaxHighlight();
 			  	RTSH.findString();
 			}
-			else if(charCode==90 && evt.ctrlKey) { // kill undo, it does not work anyway
+			else if(charCode==90 && evt.ctrlKey) { // undo
+				RTSH.historyGo(-1);
 				evt.returnValue = false; //IE
 				if(browser.ff)evt.preventDefault(); //FF
+			}
+			else if(charCode==86 && evt.ctrlKey)  {
+				// cut and paste
 			}
 		}
 	},
@@ -66,27 +88,30 @@ RTSH = {
 	// put cursor back to its original position after every parsing
 	findString : function() {
 		if(browser.ff) { // FF
-			self.find(cc);
+			if(self.find(cc))
+				window.getSelection().getRangeAt(0).deleteContents();
 		}
 		if(browser.ie) { // IE
 		    range = self.document.body.createTextRange();
-			strFound = range.findText(cc);
-		   	if (strFound) range.select();
+			if(range.findText(cc)){
+				range.select();
+				range.text = '';
+			}
 		}
 	},
-
+	
 	// syntax highlighting parser
 	syntaxHighlight : function() {
 		if(browser.ff) { // FF
 			//document.execCommand("inserthtml", false, cc);
-			window.getSelection().getRangeAt(0).insertNode(document.createTextNode(cc));
+			if(!arguments[0]) window.getSelection().getRangeAt(0).insertNode(document.createTextNode(cc));
 			x = editor.innerHTML;
 			x = x.replace(/<br>/g,'\n');
 			x = x.replace(/<.*?>|<\/.*?>/g,''); 	
 			x = x.replace(/\n/g,'<br>');			
 		}
 		else if(browser.ie) { // IE
-			if(!arguments[0])document.selection.createRange().text = cc;
+			if(!arguments[0]) document.selection.createRange().text = cc;
 			x = editor.innerHTML;
 			x = x.replace(/<P>/g,'\n');
 			x = x.replace(/<\/P>/g,'\r');
@@ -100,15 +125,15 @@ RTSH = {
 
 		for(i=0;i<languages[this.language].length;i++) 
 			x = x.replace(languages[this.language][i],languages[this.language][i+1]);
-		
-		editor.innerHTML = '<pre>'+x+'</pre>';
+
+		editor.innerHTML = this.history[this.turn++] = (browser.ff) ? x : '<pre>'+x+'</pre>' ;
 	},
-	
+
 	// transform syntax highlighted code to original code
-	plainText : function() { 
+	plainText : function() {
 		code = document.getElementsByTagName('body')[0].innerHTML;
 		code = code.replace(/<br>/gi,'\n');
-		code = code.replace(/<\/p>/gi,'\r');		
+		code = code.replace(/<\/p>/gi,'\r');
 		code = code.replace(/<p>/gi,'\n');
 		code = code.replace(/&nbsp;/gi,'');
 		code = code.replace(/\xad/g,'');
@@ -116,7 +141,7 @@ RTSH = {
 		code = code.replace(/&lt;/g,'<');
 		code = code.replace(/&gt;/g,'>');
 		return code;
-	}	
+	}
 }
 
 // language specific regular expressions
