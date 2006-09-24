@@ -1,7 +1,6 @@
--undo / redo
--copy and past of last line generates <p></p>
--copy and past should trigger parser to highlight code just pasted
--linux font size does not match line numbers (need to do some tests with line-height css)
+-copy and paste of last line generates <p></p>
+-copy and paste should trigger parser to highlight code just pasted
+-first undo seems to be going back 2 levels
 -bug of " without corresponding end "
 -"strings" outside php and outside html attributes are colouring wrong
 -page up/page down get lost (IE only)
