@@ -18,6 +18,7 @@
 		var textWithoutHighlighting = IFrameObj.RTSH.plainText()
 		alert(textWithoutHighlighting);
 	}
+	
 	last = null;
 	function changeLang(lang,obj) {
 		if(last == null) last = document.getElementById('phpbt');
@@ -39,24 +40,25 @@
 <!--p>This is a part of a bigger project. I'm currently working on a online programming IDE (<a href="http://ecco.sourceforge.net/">ecco.sourceforge.net</a>) and this syntax highlighting engine will be its code editor.</p-->
 <p>Example shows syntax highlighting for <strong>Java</strong>, <strong>PHP</strong> and <strong>HTML</strong>. Other languages can be easily implemented, its a matter of some regular expressions. Colors used for Java are based on colors used by <a href="http://www.eclipse.org/" target="_top">Eclipse IDE</a>.</p>
 
-<strong>Demo:</strong> <em>choose language:</em> <button id="phpbt" onclick="changeLang('rtsh-php.htm',this)" style="font-weight:bold;color:red">PHP</button> <button onclick="changeLang('rtsh-java.htm',this)">Java</button> <button onclick="changeLang('rtsh-html.htm',this)">HTML</button> <button onclick="changeLang('rtsh-text.htm',this)">plain text</button><br />
-<iframe width="90%" height="400" id="rtshed" name="rtshed" src="rtsh-php.htm"></iframe><br />
+<strong>Demo:</strong> <em>choose language:</em> <button id="phpbt" onclick="changeLang('rtsh-php.htm',this)" style="font-weight:bold;color:red">PHP</button> <button onclick="changeLang('rtsh-java.htm',this)">Java</button> <button onclick="changeLang('rtsh-html.htm',this)">HTML</button> <button onclick="changeLang('rtsh-javascript.htm',this)">JavaScript</button> <button onclick="changeLang('rtsh-text.htm',this)">plain text</button><br />
+<iframe width="90%" height="400" id="rtshed" name="rtshed" src="rtsh-php.htm?ts=46387263428"></iframe><br />
 <button onclick="saveAsPlainText()"><strong>alert() code without highlighting</strong></button> :: Example of showing original code
 <p>
-<strong>Download RTSHJS v.0.78 (18 september 2006):</strong><br />
+<strong>Download RTSHJS v.0.83 (24 september 2006):</strong><br />
 <ul>
 	<li><a href="http://www.txt.org/rtshjs/rtsh.js" target="_top">rtsh.js</a> :: Take a look at the main code</li>
-	<li><a href="http://www.txt.org/rtshjs/rtshjs-v.0.78.zip" target="_top">rtshjs-v.0.78.zip</a> :: Package with Java, PHP and HTML examples
+	<li><a href="http://www.txt.org/rtshjs/rtshjs-v.0.83.zip" target="_top">rtshjs-v.0.83.zip</a> :: Package with Java, PHP and HTML examples</li>
 </ul>
 </p>
 
 <p>
-Tested in <strong>Firefox 1.5</strong> and <strong>Internet Explorer 6</strong>.<br />
+Tested in <strong>Firefox 1.5</strong>, <strong>Internet Explorer 6</strong> and <strong>Internet Explorer 7 RC1</strong>.<br />
 All limitations and known bugs are listed here. If you find a new one, please <a href="https://beta.blogger.com/comment.g?blogID=4655848136530126957&postID=109359885527130993" target="_top">comment</a> or <a href="mailto:fermads@gmail.com">send me</a> an email.
 <ul>
-	<li>undo/redo do not work (yet)</li>
+	<li><s>undo/redo do not work</s> <strong class="fixed">[probably FIXED]</strong></li>
 	<li>page up/page down get lost (IE only)</li>
-	<li><s>line numbers bg seems to be reloading every parsing (IE only)</s> <strong class="fixed">[fixed]</strong></li>
+	<li>pasted (ctrl+v) text should be highlighted instantly</li>
+	<li><s>line numbers bg seems to be reloading every parsing (IE only)</s> <strong class="fixed">[FIXED]</strong></li>
 </ul>
 </p>
 
