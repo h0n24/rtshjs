@@ -159,7 +159,7 @@ RTSH = {
 }
 
 // language specific regular expressions
-// TODO: distribute languages into specific [language].js
+// TODO: distribute languages into specific [language].js files
 languages = { 
 	java : [
 	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
@@ -195,6 +195,14 @@ languages = {
 	/(&lt;script.*?&gt;)(.*?)(&lt;\/script&gt;)/g,'<u>$1</u><u>$2</u><u>$3</u>', // script tags
 	/=(["'].*?["'])/g,'=<s>$1</s>', // atributes
 	/(&lt;!--.*?--&gt.)/g,'<i>$1</i>' // comments 
+],
+	css : [
+	/(\}|^)(.*?)(\{)/g,'$1<b>$2</b>$3', // tags, ids, classes, etc
+	/([\{;])(.*?):/g,'$1<em>$2</em>:', // keys
+//	/([\{\}:;])/g,'<u>$1</u>', // dividers // SHY BUG HERE !!!!!!!!!
+	/([\"\'].*?[\"\'])/g,'<s>$1</s>', // strings
+	/\/\*(.*?)\*\//g,'<i>/*$1*/</i>', // comments	
+	
 ],
 	text : [
 	// do nothing, as expected
